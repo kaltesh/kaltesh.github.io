@@ -64,8 +64,8 @@ blockquote::before{
   font-size: 100px;
   content: '“';
   position: absolute;
-  top: -5%;
-  left: 5%;
+  top: -20px;
+  left: 10px;
 }
 
 .hi{  
