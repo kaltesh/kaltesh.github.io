@@ -69,9 +69,8 @@ blockquote::before{
 }
 
 .hi{  
-  background-image: url('http://stayathome-syllabus.greenfox.academy/week01/assets/first-website-header.png');
+  background-image: url('https://cdnb.artstation.com/p/assets/images/images/013/950/987/large/matt-wessel-4989d6ee-8bd4-401b-8384-045749b02d30.jpg?1541790094');
   background-size: cover;
-  background-position: -500px;
   transform: rotateY(180deg);
 }
 
