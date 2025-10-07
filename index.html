@@ -122,31 +122,37 @@
   </footer>
 
   <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+(function () {
+  const root = document.documentElement;
+  const key = 'theme';
+  const btn = document.getElementById('themeToggle');
 
-    // Smooth scroll for same-page anchors
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href');
-        if (id.length > 1) {
-          const el = document.querySelector(id);
-          if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-        }
-      });
-    });
+  // Apply saved theme early
+  const saved = localStorage.getItem(key);
+  if (saved === 'dark' || saved === 'light') {
+    root.setAttribute('data-theme', saved);
+  }
 
-    // Theme toggle (persists)
-    const root = document.documentElement;
-    const key = 'theme';
-    function apply(t){ root.dataset.theme=t; }
-    const saved = localStorage.getItem(key); if(saved) apply(saved);
-    const btn = document.getElementById('themeToggle');
-function setTheme(t){ root.dataset.theme=t; localStorage.setItem(key,t); btn.textContent = (t==='dark') ? '☀' : '☾'; btn.setAttribute('aria-label', t==='dark' ? 'Switch to light theme' : 'Switch to dark theme'); }
-const saved2 = localStorage.getItem(key);
-setTheme(saved2 || 'light');
-btn.addEventListener('click', () => { setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'); }); localStorage.setItem(key, next);
+  function syncIcon() {
+    if (!btn) return;
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    btn.textContent = isDark ? '☀' : '☾';
+    btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    btn.title = btn.getAttribute('aria-label');
+  }
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(key, next);
+      syncIcon();
     });
-  </script>
+  }
+
+  syncIcon();
+})();
+</script>
+
 </body>
 </html>
