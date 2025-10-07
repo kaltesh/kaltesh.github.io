@@ -29,6 +29,19 @@ nav{
   gap: 12px;
 }
 
+:root { --nav-h: 56px; } /* already have this */
+
+/* Make anchor jumps land below the sticky header */
+html {
+  scroll-padding-top: calc(var(--nav-h) + 8px);
+}
+
+/* Extra safety for sections targeted by #hash */
+section[id] {
+  scroll-margin-top: calc(var(--nav-h) + 8px);
+}
+
+
 /* Cards/sections */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;margin:18px 0}
 blockquote{color:var(--muted);border-left:3px solid var(--border);padding-left:10px;margin:10px 0}
