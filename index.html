@@ -130,6 +130,16 @@ nav a{text-decoration:none}
   </footer>
 
   <script>
+// Optional: keep smooth scroll but DO NOT compute offsets in JS
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    const el = id.length > 1 && document.querySelector(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+    
 (function () {
   const root = document.documentElement;
   const key = 'theme';
