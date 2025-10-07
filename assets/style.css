@@ -11,16 +11,23 @@ img{max-width:100%;display:block}
 
 
 
+:root { --nav-h: 56px; } /* tweak if your nav is taller */
 
-/* Header */
-header{backdrop-filter:saturate(180%) blur(8px)}
-nav{display:flex;align-items:center;gap:12px;background:var(--bg);border-bottom:1px solid var(--border)}
-.brand{font-weight:700}
-.spacer{flex:1}
-nav a{padding:8px 10px;border-radius:10px;color:var(--link)}
-nav a:hover{background:var(--card)}
-#themeToggle{margin-left:6px;border:1px solid var(--border);background:var(--card);border-radius:999px;padding:6px 10px;cursor:pointer}
+header{
+  position: sticky;   /* the key */
+  top: 0;             /* required for sticky */
+  z-index: 1000;      /* keep it above content */
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
 
+nav{
+  min-height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 /* Cards/sections */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;margin:18px 0}
